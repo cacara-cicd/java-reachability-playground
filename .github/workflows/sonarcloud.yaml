@@ -46,16 +46,15 @@ jobs:
           distribution: 'temurin'
           server-id: github # Value of the distributionManagement/repository/id field of the pom-xml 
           settings-path: ${{ github.workspace }} # location for the settings.ml file 
-          cache: maven
+          # cache: maven
       - name: Display Maven version
-        run: mvn -v
-        
-      # - name: Build with Maven 
-      #   run: |
-      #     mvn verify sonar:sonar \
-      #     -Dsonar-projectKey=cacara-cicd_java-reachability-playground \
-      #     -Dsonar.organization=cacara-cicd \
-      #     -Dsonar.host.url=https://sonarcloud.io  
+        run: mvn -v    
+      - name: Build with Maven 
+        run: |
+          mvn verify sonar:sonar \
+          -Dsonar-projectKey=cacara-cicd_java-reachability-playground \
+          -Dsonar.organization=cacara-cicd \
+          -Dsonar.host.url=https://sonarcloud.io  
         env: 
             SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
             
